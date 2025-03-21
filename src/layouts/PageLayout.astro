@@ -1,0 +1,146 @@
+---
+import '~/assets/styles/tailwind.css';
+
+import Favicons from '~/components/Favicons.astro';
+import {
+  Layout,
+  Navbar,
+  Footer,
+  BackToTopButton, 
+  type MetadataProps, 
+} from '@yatoday/astro-ui/astro';
+
+import { defaultLocale, ui } from '~/i18n/ui';
+import { useTranslations } from '~/i18n/utils';
+
+const lang = (Astro.currentLocale || defaultLocale) as keyof typeof ui;
+const t = useTranslations(lang);
+
+export interface Props {
+  metadata?: MetadataProps;
+}
+
+const { metadata } = Astro.props;
+
+export const demoActions = [{ text: 'Action', href: '/', variant: 'outline' }];
+export const demoLinks = [
+  {
+    text: "Getting started",
+    links: [
+      {text: "Styling & Theme variables", href: "/docs/styling"},
+      {text: "Components", href: "/docs/breadcrumbs"},
+      {text: "Features", href: "/docs/feature-back-to-top"},
+      {text: "Widgets", href: "/docs/widget-card-slider"}
+    ]
+  },
+  {
+    text: "Accessibility",
+    links: [
+      {text: "Accessibility", href: "/docs/accessibility"},
+      {text: "Accessibility testing", href: "/docs/accessibility-testing"}
+    ]
+  },
+  {text: "About Us", href: "/"},
+  {text: "Contact", href: "/"}
+];
+
+export const socialLinks = [
+  {ariaLabel: 'Whatsapp', icon: 'tabler:brand-whatsapp', href: '#'},
+  {ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#'},
+  {ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#'},
+  {ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: '#'},
+];
+
+export const footerData = {
+  links: [
+    {
+      title: 'Product',
+      links: [
+        { text: 'Features', href: '#' },
+        { text: 'Security', href: '#' },
+        { text: 'Team', href: '#' },
+        { text: 'Enterprise', href: '#' },
+        { text: 'Customer stories', href: '#' },
+        { text: 'Pricing', href: '#' },
+      ],
+    },
+    {
+      title: 'Platform',
+      links: [
+        { text: 'Developer API', href: '#' },
+        { text: 'Partners', href: '#' },
+        { text: 'Atom', href: '#' },
+        { text: 'Electron', href: '#' },
+        { text: 'Desktop', href: '#' },
+        { text: 'Shop', href: '#' }
+      ],
+    },
+    {
+      title: 'Support',
+      links: [
+        { text: 'Docs', href: '#' },
+        { text: 'Community Forum', href: '#' },
+        { text: 'Services', href: '#' },
+        { text: 'Skills', href: '#' },
+        { text: 'Status', href: '#' },
+        { text: 'Resources', href: '#' }
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { text: 'About', href: '#' },
+        { text: 'Blog', href: '#' },
+        { text: 'Careers', href: '#' },
+        { text: 'Press', href: '#' },
+        { text: 'Inclusion', href: '#' },
+        { text: 'Social Impact', href: '#' }
+      ],
+    },
+  ],
+  secondaryLinks: [
+    { text: 'Terms', href: '#' },
+    { text: 'Privacy Policy', href: '#' },
+  ],
+  socialLinks: socialLinks,
+  note: `Made in <a class="text-primary hover:underline" target="_blank" href="https://yatoday.es">Yatoday</a>`,
+}
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="head">
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Favicons />
+  </Fragment>
+  
+  <slot name="announcement"></slot>
+
+  <slot name="header">
+    <Navbar
+      links={demoLinks}
+      actions={demoActions}
+      isSticky
+      showToggleTheme
+      classes={{
+        container: "text-foreground",
+        dropdown: "bg-card text-card-foreground shadow-lg",
+        pinned: "bg-background",
+        unpinned: "",
+      }}
+    />
+  </slot>
+  
+  <main>
+    <slot />
+  </main>
+  
+  <slot name="footer">
+    <Footer {...footerData}>
+      <Fragment slot="bg">
+        <div class="bg-background absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+      </Fragment>
+    </Footer>
+  </slot>
+  
+  <BackToTopButton />
+</Layout>

@@ -1,0 +1,23 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import {WidgetHero0} from '@yatoday/astro-ui/astro';
+---
+
+<Layout>
+  <WidgetHero0
+    title="Work with us"
+    subtitle="Anim aute id magna aliqua ad ad non deserunt sunt..."
+    classes={{
+      headline: {
+        title: 'text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tighter mb-4 mt-8 font-heading',
+        subtitle: 'text-xl',
+      },
+    }}
+    actions={[
+      { variant: 'primary', href: '/', text: 'Read more' },
+      { variant: 'outline', href: '/', text: 'Read more' },
+    ]}
+  >
+  </WidgetHero0>
+  
+</Layout>

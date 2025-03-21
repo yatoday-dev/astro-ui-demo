@@ -1,0 +1,26 @@
+---
+import {Layout, Button} from '@yatoday/astro-ui/astro';
+import { getLangFromUrl, useTranslations, defaultLocale } from '~/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const title = t('404.title');
+---
+
+<Layout metadata={{ title }}>
+  <section class="flex items-center h-full p-16">
+    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+      <div class="max-w-md text-center">
+        <h2 class="mb-8 font-bold text-9xl">
+          <span class="sr-only">{t('error')}</span>
+          <span class="text-primary">404</span>
+        </h2>
+        <p class="text-3xl font-semibold md:text-3xl">{t('404.desc.1')}</p>
+        <p class="mt-4 mb-8 text-lg text-muted-foreground dark:text-slate-400">
+          {t('404.desc.2')}
+        </p>
+        <Button variant="outline" rel="noopener noreferrer" href="/" class="btn ml-4">{t('404.desc.link')}</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/*
+ * If necessary, you can include in the project all the styles
+ * that were used in the component library 
+ */
+/*@import "node_modules/@yatoday/astro-ui/styles/styles.css";*/
+
+/*
+ * Optional:
+ * Connect one of the predefined design themes:
+ * - default
+ * - ...
+ */
+@import "node_modules/@yatoday/astro-ui/styles/themes/default.css";
+
+/* 
+ * All fonts:
+ * https://fontsource.org/
+ */
+/*@import '@fontsource-variable/noto-sans';*/
+/*@import '@fontsource-variable/inter';*/
+/*@import '@fontsource-variable/nunito';*/
+
+@plugin "@tailwindcss/typography";
+
+/*
+ * Dark mode by class
+ * Read more: https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Important:
+ * Include the path to the source library in your project 
+ * so that Tailwind can find the styles applied there
+ */
+@source "../../../node_modules/@yatoday/astro-ui/components";
+
+/* 
+ * Define theme variables
+ * Read more: https://tailwindcss.com/docs/colors#referencing-other-variables
+ */
+:root {
+  /*--font-sans: 'Noto Sans Variable', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+  /*--font-serif: 'Noto Sans Variable', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;*/
+  /*--font-mono: 'Nunito Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;*/
+  
+  /* Colors */
+  /*
+  --ya-color-background:
+  --ya-color-foreground:
+  --yt-color-card:
+  --yt-color-card-foreground:
+  --yt-color-popover:
+  --yt-color-popover-foreground:
+  --yt-color-primary:
+  --yt-color-primary-foreground:
+  --yt-color-secondary:
+  --yt-color-secondary-foreground:
+  --yt-color-muted:
+  --yt-color-muted-foreground:
+  --yt-color-accent:
+  --yt-color-accent-foreground:
+  --yt-color-destructive:
+  --yt-color-destructive-foreground:
+  --yt-color-border:
+  --yt-color-input:
+  --yt-color-ring:
+  */
+}
+
+.dark {
+  
+}
+
+@theme {
+  --radius-btn: 9999px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+#header.scroll {
+  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
+}
+.dark #header.scroll,
+#header.scroll.dark {
+  box-shadow: none;
+}
